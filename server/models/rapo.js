@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const WorkSchema = new mongoose.Schema({
     name: String,
     email: String,
+    phone: String,
     password: String
 }, {
     collection: 'work'  // This explicitly sets the collection name to 'work'

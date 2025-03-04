@@ -4,21 +4,23 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
+
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState(""); // Add new state variable
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validation checks
-        if (!name || !email || !password) {
+        // Update validation checks
+        if (!name || !email || !password || !phone) {
             alert("All fields are required.");
             return;
         }
 
-        axios.post('http://localhost:3001/register', { name, email, password })
+        axios.post('http://localhost:3001/register', { name, email, password, phone })
         .then(result => console.log(result))
         .catch(err => console.error(err));
         navigate('/login'); // Navigate to login page
@@ -51,6 +53,18 @@ function Signup() {
                             className="form-control"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="phone">
+                            <strong>Phone Number</strong>
+                        </label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            className="form-control"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
